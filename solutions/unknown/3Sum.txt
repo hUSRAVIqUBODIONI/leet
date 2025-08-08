@@ -3,3 +3,40 @@
             // Language: undefined
             // Link: https://leetcode.com/problems/3sum/
 
+class Solution {
+    fun threeSum(nums: IntArray): List<List<Int>> {
+    
+        val result : MutableList<List<Int>> = mutableListOf()
+        
+        nums.sort()
+    
+     	for (ind in 0 until nums.size - 2) {
+           	if(ind !=0 && nums[ind] == nums[ind-1]) continue
+            
+            val base = nums[ind]
+            var left = ind+1
+       		var right = nums.size -1
+            while(left<right){
+                val sum = base + nums[left] + nums[right]
+                
+                when{
+                    sum ==0 ->{
+                        result.add(listOf(base,nums[left],nums[right]))
+                        while(left < right && nums[left]==nums[left+1]) left++
+                        while(left < right && nums[right]==nums[right-1]) right--
+                        left++
+                        right--
+                    }
+                    sum < 0 -> left++
+                    else -> right--
+                    
+                }
+            }
+           
+            
+        }
+        return result
+        
+   
+}
+}
