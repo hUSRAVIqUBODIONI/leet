@@ -1,0 +1,37 @@
+class Solution {
+    fun threeSumClosest(nums: IntArray, target: Int): Int {
+    
+    if(nums.size == 3){
+        return nums.sum()
+    }
+    nums.sort()
+    var res = Int.MAX_VALUE
+    for(ind in 0 until nums.size - 2){
+        
+        var left = ind + 1
+        var right = nums.size -1
+        var temp_sum = nums[ind] + nums[left] + nums[right]
+        
+        while(left<right){
+            val sum = nums[ind] + nums[left] + nums[right]
+             if (Math.abs(sum - target) < Math.abs(res - target)) res = sum
+            when {
+                sum > target -> {
+                    right--
+                }
+                sum < target -> {
+                    left++
+                }
+                else -> {
+                    return target 
+                }
+            }
+        }
+    
+        
+    }
+   	
+    return res
+        
+    }
+}
