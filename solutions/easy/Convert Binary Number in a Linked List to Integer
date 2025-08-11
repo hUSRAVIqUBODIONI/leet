@@ -1,0 +1,29 @@
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun getDecimalValue(head: ListNode?): Int {
+
+        if(head?.next == null) return head!!.`val`
+        
+        var pos = 0
+        var result = 0
+
+        var prev = head
+    
+        while(prev != null){
+            result = (result shl 1) or prev!!.`val`
+            pos++
+            prev = prev?.next
+        }
+
+        return result
+
+    }
+}
